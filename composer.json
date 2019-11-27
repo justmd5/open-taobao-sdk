@@ -1,0 +1,13 @@
+{
+    "name": "justmd5/open-taobao-sdk",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Justmd5\\Taobao\\": "src/"
+        }
+    },
+    "require": {
+        "hanson/foundation-sdk": "^3.0",
+        "ext-json": "*"
+    }
+}
