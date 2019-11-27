@@ -4,7 +4,7 @@
 ## 安装
 
 ```
-composer require justmd5/open-taobao-sdk:dev-master -vvv
+composer require justmd5/open-taobao-sdk -vvv
 ```
 
 ### 使用
