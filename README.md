@@ -14,7 +14,7 @@ composer require justmd5/open-taobao-sdk -vvv
 
 include __DIR__.'/../vendor/autoload.php';
 
-$taobao = new \Justmd5\Taobao\Taobao(['key' => 'your-key', 'secret' => 'your-secret']);
+$taobao = new \Justmd5\Taobao\Taobao(['key' => 'your-key', 'secret' => 'your-secret','debug'=>true]);
 
 // 例子
 print_r($taobao->request('taobao.tbk.item.get', ['fields' => 'num_iid,title,pict_url,small_images,reserve_price,zk_final_price,user_type,provcity,item_url,seller_id,volume,nick', 'q' => '便利贴']));
