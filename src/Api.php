@@ -52,7 +52,7 @@ class Api extends AbstractAPI
         $params['sign_method'] = 'md5';
         $params['method']      = $method;
         $params['timestamp']   = date('Y-m-d H:i:s');
-        if (empty($params['session']) && !empty($this->session)) {
+        if (empty($params['session']) && $this->session) {
             $params['session'] = $this->session;
         }
         $params['sign'] = $this->signature($params);

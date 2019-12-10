@@ -11,10 +11,11 @@ class Taobao extends Foundation
 
     public function request($method, $params)
     {
-        $api = new Api(
+        $session = $params['session']??$this->getConfig('session');
+        $api     = new Api(
             $this->getConfig('key'),
             $this->getConfig('secret'),
-            isset($params['session']) && !empty($params['session']) ? $params['session'] : null
+            $session
         );
 
         return $api->request($method, $params);
