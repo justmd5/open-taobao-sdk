@@ -7,7 +7,9 @@
         }
     },
     "require": {
-        "hanson/foundation-sdk": "^3.0",
-        "ext-json": "*"
+        "ext-json": "*",
+        "php": ">=7.2.0",
+        "illuminate/http": "^7.30",
+        "guzzlehttp/guzzle": "^7.8"
     }
 }

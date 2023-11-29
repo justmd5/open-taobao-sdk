@@ -4,12 +4,14 @@
 namespace Justmd5\Taobao;
 
 
-use Hanson\Foundation\AbstractAPI;
 
-class Api extends AbstractAPI
+use Illuminate\Http\Client\Factory as HttpFactory;
+use Illuminate\Http\Client\PendingRequest;
+
+class Api
 {
 
-    const URL = 'http://gw.api.taobao.com/router/rest';
+    const URL = 'https://gw.api.taobao.com/router/rest';
 
     protected $key;
 
@@ -26,7 +28,7 @@ class Api extends AbstractAPI
         $this->session = $session;
     }
 
-    private function signature($params)
+    private function signature($params): string
     {
         ksort($params);
 
@@ -42,10 +44,8 @@ class Api extends AbstractAPI
         return strtoupper(md5($sign));
     }
 
-    public function request($method, $params, $files = [])
+    public function request($method, $params): array
     {
-        $http = $this->getHttp();
-
         $params['app_key']     = $this->key;
         $params['v']           = '2.0';
         $params['format']      = 'json';
@@ -56,9 +56,13 @@ class Api extends AbstractAPI
             $params['session'] = $this->session;
         }
         $params['sign'] = $this->signature($params);
-        $response       = call_user_func_array([$http, 'post'], [self::URL, $params, $files]);
+        /**
+         * @var $http PendingRequest
+         */
+        $http = new HttpFactory();
+        $response       = $http->asForm()->post(self::URL, $params);
 
-        return json_decode(strval($response->getBody()), true);
+        return $response->json();
     }
 
 }
